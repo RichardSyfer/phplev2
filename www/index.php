@@ -1,9 +1,12 @@
 <?php
-//require __DIR__ . '/models/article.php';
-require __DIR__ . '/classes/Article.php';
+require_once __DIR__ . '/autoload.php';
 
-$articles = News::getAll();
+$ctrl = isset($_GET['ctrl']) ? $_GET['ctrl'] : 'News';
+$act = isset($_GET['act']) ? $_GET['act'] : 'All';
 
-//$items = Article_getAll();
+$controllerClassName = $ctrl . 'Controller';
 
-include __DIR__ . '/views/index.php';
+$controller = new $controllerClassName;
+
+$method = 'action' . $act;
+$controller->$method();

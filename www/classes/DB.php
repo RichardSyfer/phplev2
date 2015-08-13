@@ -1,18 +1,13 @@
 <?php
 
-class Php2SQL
+class DB
 {
-    protected $server = 'localhost';
-    protected $user = 'root';
-    protected $password = '';
-    protected $db = 'test';
-
     public function __construct() {
-        mysql_connect($this->server, $this->user, $this->password);
-        mysql_select_db($this->db);
+        mysql_connect('localhost', 'root', '');
+        mysql_select_db('test');
     }
 
-    public function Sql_query($query_str, $class = 'stdClass')
+    public function queryAll($query_str, $class = 'stdClass')
     {
         $res = mysql_query($query_str);
 
@@ -26,6 +21,11 @@ class Php2SQL
         }
 
         return $ret;
+    }
+
+    public function queryOne($sql, $class = 'stdClass')
+    {
+        return $this->queryAll($sql, $class)[0];
     }
 
     public function Sql_exec($query_str)

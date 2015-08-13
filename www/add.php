@@ -1,6 +1,5 @@
 <?php
-//require __DIR__ . '/models/article.php';
-require __DIR__ . '/classes/Article.php';
+//require __DIR__ . '/classes/Article.php';
 
 if (!empty($_POST)) {
     //$data = [];
