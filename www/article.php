@@ -1,7 +1,6 @@
 <?php
 //require __DIR__ . '/models/article.php';
 require __DIR__ . '/classes/Article.php';
-require __DIR__ . '/classes/Php2SQL.php';
 
 if (!empty($_GET['id'])) {
     $art_id = (int)$_GET['id'];

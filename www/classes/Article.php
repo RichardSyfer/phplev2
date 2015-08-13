@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/Php2SQL.php';
+
 abstract class Article
 {
     public $id;
@@ -8,7 +10,7 @@ abstract class Article
     public $author;
     public $post_date;
 
-    abstract public function getAll();
+    //abstract public static function getAll();
     abstract public function getArticleById();
     abstract public function insert();
 
@@ -16,18 +18,18 @@ abstract class Article
 
 class News extends Article
 {
-    public function getAll(){
-        $sql_query_str = 'SELECT * FROM articles';
-        $Sql_query = new Php2SQL;
-        return $Sql_query->Sql_query($sql_query_str);
+    public static function getAll(){
+        $sql_query_str = 'SELECT * FROM articles ORDER BY post_date DESC';
+        $db = new Php2SQL;
+        return $db->Sql_query($sql_query_str, 'News');
     }
 
     public function getArticleById()
     {
         if (isset($this->id)):
             $sql_query_str = "SELECT * FROM articles WHERE id=" . $this->id;
-            $Sql_query = new Php2SQL;
-            return $Sql_query->Sql_query($sql_query_str);
+            $db= new Php2SQL;
+            return $db->Sql_query($sql_query_str, 'News');
         endif;
     }
 

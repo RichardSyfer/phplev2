@@ -12,12 +12,16 @@ class Php2SQL
         mysql_select_db($this->db);
     }
 
-    public function Sql_query($query_str)
+    public function Sql_query($query_str, $class = 'stdClass')
     {
         $res = mysql_query($query_str);
 
+        if (false === $res) {
+            return false;
+        }
+
         $ret = [];
-        while (false !== $row = mysql_fetch_assoc($res)) {
+        while (false !== $row = mysql_fetch_object($res, $class)) {
             $ret[] = $row;
         }
 
