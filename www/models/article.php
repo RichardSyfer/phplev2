@@ -17,6 +17,8 @@ function Article_insert($data)
 {
     $sql_query_str = "INSERT INTO articles
       (title, article_prev, article_txt, author, post_date) VALUES
-      ('" . $data['title'] . "', '" . $data['article_prev'] . "', '" . $data['article_txt']. "', '" . $data['author']. "', '" . $data['post_date']. "')";
+      ('" . $data['title'] . "', '" . $data['article_prev'] . "', '" .
+        $data['article_txt']. "', '" . $data['author']. "', '" .
+        $data['post_date']. "')";
     Sql_exec($sql_query_str);
 }

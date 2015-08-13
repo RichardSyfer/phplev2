@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2>News</h2>
-<?php foreach ($items as $item) :?>
+<?php foreach ($articles as $item) :?>
 <div>
     <h3><a href="//php2.local/article.php?id=<?php echo $item['id']; ?>">
                 <?php echo $item['title']; ?></a></h3>
