@@ -14,7 +14,10 @@
         <p><?php echo $item->author; ?></p>
         <p><?php echo $item->post_date; ?></p>
     </div>
-<?php endforeach; ?>
-<p><a href="//php2.local/Admin/AddNews">Добавить новую статью</a></p>
+<?php endforeach;
+
+//var_dump($this->data['articles']); die;
+?>
+<p><a href="//php2.local/admin/addnews">Добавить новую статью</a></p>
 </body>
 </html>

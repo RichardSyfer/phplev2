@@ -3,8 +3,10 @@
 class DB
 {
     public function __construct() {
-        mysql_connect('localhost', 'root', '');
-        mysql_select_db('test');
+        require __DIR__ . '/../core/config.php';
+
+        mysql_connect($config['db']['db_host'], $config['db']['db_username'], $config['db']['db_password']);
+        mysql_select_db($config['db']['db_name']);
     }
 
     public function queryAll($query_str, $class = 'stdClass')

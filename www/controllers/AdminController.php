@@ -4,8 +4,6 @@ class AdminController
 {
     public function actionAddNews()
     {
-
-
         if (!empty($_POST)) {
             $news = new News();
 
