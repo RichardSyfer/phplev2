@@ -5,12 +5,12 @@
     <title>Add new article</title>
 </head>
 <body>
-<form action="/add.php" method="post">
-   <p>
-       <label for="title">Заголовок
-           <input type="text" name="title">
-       </label>
-   </p>
+<form action="/" method="post">
+    <p>
+        <label for="title">Заголовок
+            <input type="text" name="title">
+        </label>
+    </p>
     <p>
         <label for="article_prev">Превью статьи
             <textarea name="article_prev" cols="130" rows="10" maxlength="512"></textarea>

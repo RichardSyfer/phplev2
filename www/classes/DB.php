@@ -28,7 +28,7 @@ class DB
         return $this->queryAll($sql, $class)[0];
     }
 
-    public function Sql_exec($query_str)
+    public function queryExec($query_str)
     {
         mysql_query($query_str);
     }

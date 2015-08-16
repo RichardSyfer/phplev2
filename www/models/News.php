@@ -13,7 +13,6 @@ class News
     protected static $table = 'articles';
     protected static $class = 'News';
 
-/*
     public function insert()
     {
         if (isset($this->title) &&
@@ -27,10 +26,10 @@ class News
               ('" . $this->title . "', '" . $this->article_prev . "', '" .
                 $this->article_txt . "', '" . $this->author . "', '" .
                 $this->post_date . "')";
-            $Sql_exec = new DB;
-            $Sql_exec->Sql_exec($sql_query_str);
+            $db = new DB;
+            $db->queryExec($sql_query_str);
         endif;
 
     }
-*/
+
 }
