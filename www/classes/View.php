@@ -1,9 +1,9 @@
 <?php
 
 class View
-    implements Iterator
+    implements Iterator, Countable
 {
-    protected $data = [];
+    protected $data = []; //['1', '2', '3', '4'];
 
     public function __set($key, $val)
     {
@@ -35,28 +35,38 @@ class View
         echo $this->render($template_link);
     }
 
+    //methods for Iterator
     public function current()
     {
-        // TODO: Implement current() method.
+        //var_dump(__METHOD__);
+        return current($this->data);
     }
 
     public function next()
     {
-        // TODO: Implement next() method.
+        //var_dump(__METHOD__);
+        next($this->data);
     }
 
     public function key()
     {
-        // TODO: Implement key() method.
-    }
+        //var_dump(__METHOD__);
+        return key($this->data);
+}
 
     public function valid()
     {
-        // TODO: Implement valid() method.
+        //var_dump(__METHOD__);
+        return isset($this->data[$this->key()]);
     }
 
     public function rewind()
     {
-        // TODO: Implement rewind() method.
+        //var_dump(__METHOD__);
+        reset($this->data);
+    }
+
+    public function count(){
+        return count($this->data);
     }
 }

@@ -7,7 +7,6 @@ class NewsController
         $articles = News::getAll();
         $view = new View();
         $view->articles = $articles;
-        //var_dump($view->render('news/all.php')); die;
         $view->display('news/all.php');
     }
 
