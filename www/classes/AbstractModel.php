@@ -1,22 +1,60 @@
 <?php
 
 abstract class AbstractModel
-    implements IModel
 {
     protected static $table;
-    protected static $class;
+    protected $data = [];
 
-    public static function getAll(){
-        $sql_query_str = "SELECT * FROM " . static::$table;
-        $db = new DB;
-        return $db->queryAll($sql_query_str, static::$class);
+    public function __set($key, $val)
+    {
+        $this->data[$key] = $val;
     }
 
-    public static  function getOne($id)
+    public function __get($key)
     {
-        $sql_query_str = "SELECT * FROM " . static::$table . " WHERE id=" . $id;
-        $db = new DB();
-        return $db->queryOne($sql_query_str, static::$class);
+        return $this->data[$key];
+    }
 
+    public static function findAll()
+    {
+        $class = get_called_class();
+        $sql = 'SELECT * FROM ' . static::$table;
+        $db = new ODB();
+        $db->setClassName($class);
+        return $db->query($sql);
+    }
+
+    public static function findOneByPk($id)
+    {
+        $class = get_called_class();
+        $sql = 'SELECT * FROM ' . static::$table . ' WHERE id=:id';
+        $db = new ODB();
+        $db->setClassName($class);
+        return $db->query($sql, [':id' => $id])[0];
+    }
+
+    public function insert()
+    {
+        $cols = array_keys($this->data);
+        $data = [];
+        foreach ($cols as $val) {
+            $data[':' . $val] = $this->data[$val];
+        }
+
+        $sql = '
+            INSERT INTO ' . static::$table .'
+            ('. implode(', ', $cols) .')
+            VALUES
+            ('. implode(', ', array_keys($data)) .')
+        ';
+
+        // $this->data
+        // ['title'=>'Foo', 'text'=>'Bar']
+        // для подстановки
+        // [':title'=>'Foo', ':text'=>'Bar']
+        // п.э. создан локал. массив $data
+
+        $db = new ODB();
+        $db->execute($sql, $data);
     }
 }
