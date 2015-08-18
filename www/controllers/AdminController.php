@@ -5,7 +5,7 @@ class AdminController
     public function actionAddNews()
     {
         if (!empty($_POST)) {
-            $news = new News();
+            $news = new NewsModel();
 
             if (!empty($_POST['title'])) {
                 $news->title = $_POST['title'];
@@ -28,6 +28,26 @@ class AdminController
            die;
         }
 
-        include __DIR__ . '/../views/admin/addnews.php';
+        $view = new View();
+        $view->display('admin/addnews.php');
+    }
+
+    public function actionDelNews()
+    {
+        $news = new NewsModel();
+        $view = new View();
+
+        if (isset($_GET['id'])) {
+            $item = NewsModel::findOneByPk($_GET['id']);
+            $view->item = $item;
+            $view->deleted = true;
+
+            //$news->delete('id', $_GET['id']);
+        } else {
+            $newsTitles = NewsModel::findAll();
+            $view->news = $newsTitles;
+        }
+
+        $view->display('admin/delnews.php');
     }
 }

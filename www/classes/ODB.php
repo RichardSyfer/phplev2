@@ -33,6 +33,7 @@ class ODB
     public function execute($sql, $params = [])
     {
         $sth = $this->dbh->prepare($sql);
-        return $sth->execute($params);
+        $sth->execute($params);
+        return $this->dbh->lastInsertId();
     }
 }

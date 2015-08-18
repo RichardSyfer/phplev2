@@ -7,3 +7,4 @@ RewriteCond %{REQUEST_FILENAME} !-f
 #Выполнить преобразования
 RewriteRule ^([A-z]+)/([A-z]+)/([0-9]+)/?$ index.php?ctrl=$1&act=$2&id=$3 [L]
 RewriteRule ^([A-z]+)/([A-z]+)/?$ index.php?ctrl=$1&act=$2 [L]
+RewriteRule ^admin/?$ views/admin/index.php [L]

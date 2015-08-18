@@ -33,19 +33,30 @@ abstract class AbstractModel
         return $db->query($sql, [':id' => $id])[0];
     }
 
+    public static function findByColumn($field, $value)
+    {
+        $class = get_called_class();
+        $sql = "SELECT * FROM " . static::$table .
+            " WHERE " . $field . " LIKE :" . $field;
+
+        $db = new ODB();
+        $db->setClassName($class);
+        return $db->query($sql,[':'. $field => '%'.$value.'%']);
+    }
+
     public function insert()
     {
         $cols = array_keys($this->data);
-        $data = [];
+        $prms = [];
         foreach ($cols as $val) {
-            $data[':' . $val] = $this->data[$val];
+            $prms[':' . $val] = $this->data[$val];
         }
 
         $sql = '
             INSERT INTO ' . static::$table .'
             ('. implode(', ', $cols) .')
             VALUES
-            ('. implode(', ', array_keys($data)) .')
+            ('. implode(', ', array_keys($prms)) .')
         ';
 
         // $this->data
@@ -55,6 +66,50 @@ abstract class AbstractModel
         // п.э. создан локал. массив $data
 
         $db = new ODB();
-        $db->execute($sql, $data);
+        $this->data['id'] = $db->execute($sql, $prms);
     }
+
+    public function delete($field, $value)
+    {
+        $sql = "DELETE FROM " . static::$table . " WHERE " . $field . "=:" . $field;
+        $db = new ODB();
+        $db->execute($sql, [':' . $field => $value]);
+    }
+
+    public function update($column, $value)
+    {
+        /*  UDPDATE table
+            SET col1=val1, col2=val2, colN=valN
+            WHERE someCol=someVal
+
+            sql=
+            UPDATE articles
+            SET title = :title, author = :author
+            WHERE id = :id
+
+            prms= для подстановки PDO->execute
+            [':title' => 'MyNewTitle', ':author' => 'NewAuthor', ':id' => 123]
+         */
+
+        $cols = array_keys($this->data);
+        $prms = [];
+        foreach ($cols as $val) {
+            $prms[':' . $val] = $this->data[$val];
+        }
+        $prms[':' . $column] = $value;
+
+        $setstr = [];
+        foreach ($cols as $val) {
+            $setstr[] = $val . ' = :' .$val;
+        }
+
+        $sql =
+            'UPDATE ' . static::$table .
+            ' SET ' . implode(', ', $setstr).
+            ' WHERE ' . $column . '=:' . $column;
+
+        $db = new ODB();
+        $db->execute($sql, $prms);
+    }
+
 }
