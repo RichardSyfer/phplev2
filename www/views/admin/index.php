@@ -9,6 +9,6 @@
 <h4><a href="/admin/addnews">Добавить новость</a></h4>
 <h4><a href="/admin/delnews">Удалить новость</a></h4>
 <h4><a href="/admin/updnews">Изменить новость</a></h4>
-
+<h4><a href="/admin/logview">Просмотр лога ошибок</a></h4>
 </body>
 </html>

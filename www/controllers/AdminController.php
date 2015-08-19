@@ -23,7 +23,7 @@ class AdminController
                 $news->post_date = $_POST['post_date'];
             }
 
-           $news->insert();
+           $news->save();
            header('Location: /');
            die;
         }
@@ -42,12 +42,20 @@ class AdminController
             $view->item = $item;
             $view->deleted = true;
 
-            //$news->delete('id', $_GET['id']);
+            //$news->delete();
         } else {
             $newsTitles = NewsModel::findAll();
             $view->news = $newsTitles;
         }
 
         $view->display('admin/delnews.php');
+    }
+
+    public function actionLogView()
+    {
+        $log = file_get_contents(__DIR__ . '/../e_logs/Errors.txt');
+        $view = new View();
+        $view->log = $log;
+        $view->display('admin/logview.php');
     }
 }

@@ -1,0 +1,172 @@
+Date/Time: 2015/08/19 17:56:44
+Message:   SQLSTATE[HY000] [1045] Access denied for user ''@'localhost' (using password: NO)
+Code:      1045
+File:      C:\OpenServer\domains\php2.local\www\classes\ODB.php
+Line:      19
+
+Date/Time: 2015/08/19 17:58:43
+Message:   Page not found
+Code:      0
+File:      C:\OpenServer\domains\php2.local\www\controllers\NewsController.php
+Line:      26
+
+Date/Time: 2015/08/19 18:04:16
+Message:   Page not found
+Code:      0
+File:      C:\OpenServer\domains\php2.local\www\controllers\NewsController.php
+Line:      26
+
+Date/Time: 2015/08/19 18:05:02
+Message:   Page not found
+Code:      0
+File:      C:\OpenServer\domains\php2.local\www\controllers\NewsController.php
+Line:      26
+
+Date/Time: 2015/08/19 18:08:09
+Message:   SQLSTATE[HY093]: Invalid parameter number: no parameters were bound
+Code:      HY093
+File:      C:\OpenServer\domains\php2.local\www\classes\ODB.php
+Line:      34
+
+Date/Time: 2015/08/19 18:09:13
+Message:   SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty
+Code:      42000
+File:      C:\OpenServer\domains\php2.local\www\classes\ODB.php
+Line:      34
+
+Date/Time: 2015/08/19 18:12:59
+Message:   SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty
+Code:      42000
+File:      C:\OpenServer\domains\php2.local\www\classes\ODB.php
+Line:      34
+
+Date/Time: 2015/08/19 18:21:58
+Message:   SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty
+Code:      42000
+File:      C:\OpenServer\domains\php2.local\www\classes\ODB.php
+Line:      34
+
+Date/Time: 2015/08/19 18:22:24
+Message:   SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'F0ROM articles WHERE id='120'' at line 1
+Code:      42000
+File:      C:\OpenServer\domains\php2.local\www\classes\ODB.php
+Line:      34
+
+Date/Time: 2015/08/19 18:25:35
+Message:   В базе данных не найдена запись, соответсвующая данному id=120
+Code:      1
+File:      C:\OpenServer\domains\php2.local\www\classes\AbstractModel.php
+Line:      44
+
+Date/Time: 2015/08/19 18:27:30
+Message:   В базе данных не найдена запись, соответсвующая данному id=120
+Code:      0
+File:      C:\OpenServer\domains\php2.local\www\classes\AbstractModel.php
+Line:      45
+
+Date/Time: 2015/08/19 18:28:50
+Message:   В базе данных не найдена запись, соответсвующая данному id=120
+Code:      1
+File:      C:\OpenServer\domains\php2.local\www\classes\AbstractModel.php
+Line:      45
+
+Date/Time: 2015/08/19 18:35:14
+Message:   Page not found
+Code:      0
+File:      C:\OpenServer\domains\php2.local\www\controllers\NewsController.php
+Line:      26
+
+Date/Time: 2015/08/19 18:35:16
+Message:   Page not found
+Code:      0
+File:      C:\OpenServer\domains\php2.local\www\controllers\NewsController.php
+Line:      26
+
+Date/Time: 2015/08/19 18:35:21
+Message:   Page not found
+Code:      0
+File:      C:\OpenServer\domains\php2.local\www\controllers\NewsController.php
+Line:      26
+
+Date/Time: 2015/08/19 18:38:15
+Message:   В базе данных не найдена запись, соответсвующая данному id=120
+Code:      1
+File:      C:\OpenServer\domains\php2.local\www\classes\AbstractModel.php
+Line:      42
+
+Date/Time: 2015/08/19 18:38:46
+Message:   В базе данных не найдена запись, соответсвующая данному id=120
+Code:      1
+File:      C:\OpenServer\domains\php2.local\www\classes\AbstractModel.php
+Line:      42
+
+Date/Time: 2015/08/19 18:39:44
+Message:   В базе данных не найдена запись, соответсвующая данному id=120
+Code:      1
+File:      C:\OpenServer\domains\php2.local\www\classes\AbstractModel.php
+Line:      42
+
+Date/Time: 2015/08/19 18:40:10
+Message:   В базе данных не найдена запись, соответсвующая данному id=110
+Code:      1
+File:      C:\OpenServer\domains\php2.local\www\classes\AbstractModel.php
+Line:      42
+
+Date/Time: 2015/08/19 18:49:39
+Message:   SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty
+Code:      42000
+File:      C:\OpenServer\domains\php2.local\www\classes\ODB.php
+Line:      34
+
+Date/Time: 2015/08/19 18:51:07
+Message:   SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty
+Code:      42000
+File:      C:\OpenServer\domains\php2.local\www\classes\ODB.php
+Line:      34
+
+Date/Time: 2015/08/19 18:51:54
+Message:   SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty
+Code:      42000
+File:      C:\OpenServer\domains\php2.local\www\classes\ODB.php
+Line:      34
+
+Date/Time: 2015/08/19 18:52:17
+Message:   Page not found
+Code:      0
+File:      C:\OpenServer\domains\php2.local\www\controllers\NewsController.php
+Line:      13
+
+Date/Time: 2015/08/19 18:54:40
+Message:   Page not found
+Пустой результат выборки по запросу
+Code:      3
+File:      C:\OpenServer\domains\php2.local\www\controllers\NewsController.php
+Line:      15
+
+Date/Time: 2015/08/19 18:54:48
+Message:   Page not found
+Пустой результат выборки по запросу
+Code:      3
+File:      C:\OpenServer\domains\php2.local\www\controllers\NewsController.php
+Line:      15
+
+Date/Time: 2015/08/19 18:55:00
+Message:   Page not found
+Пустой результат выборки по запросу
+Code:      3
+File:      C:\OpenServer\domains\php2.local\www\controllers\NewsController.php
+Line:      15
+
+Date/Time: 2015/08/19 18:56:20
+Message:   Page not found
+Пустой результат выборки по запросу
+Code:      3
+File:      C:\OpenServer\domains\php2.local\www\controllers\NewsController.php
+Line:      15
+
+Date/Time: 2015/08/19 18:59:38
+Message:   В базе данных не найдена запись, соответсвующая данному id=1205
+Code:      1
+File:      C:\OpenServer\domains\php2.local\www\classes\AbstractModel.php
+Line:      42
+

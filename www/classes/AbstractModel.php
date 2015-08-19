@@ -15,6 +15,11 @@ abstract class AbstractModel
         return $this->data[$key];
     }
 
+    public function __isset($key)
+    {
+        return isset($this->data[$key]);
+    }
+
     public static function findAll()
     {
         $class = get_called_class();
@@ -30,21 +35,33 @@ abstract class AbstractModel
         $sql = 'SELECT * FROM ' . static::$table . ' WHERE id=:id';
         $db = new ODB();
         $db->setClassName($class);
-        return $db->query($sql, [':id' => $id])[0];
+        $res = $db->query($sql, [':id' => $id])[0];
+        if (empty($res)) {
+            $e_message = 'В базе данных не найдена запись, соответсвующая данному id=' . $id;
+            $e_code = 1;
+            throw new E404Exception($e_message, $e_code);
+        }
+        return $res;
     }
 
-    public static function findByColumn($field, $value)
+    public static function findByColumn($column, $value)
     {
-        $class = get_called_class();
-        $sql = "SELECT * FROM " . static::$table .
-            " WHERE " . $field . " LIKE :" . $field;
-
         $db = new ODB();
-        $db->setClassName($class);
-        return $db->query($sql,[':'. $field => '%'.$value.'%']);
+        $db->setClassName(get_called_class());
+
+        $sql = "SELECT * FROM " . static::$table .
+            " WHERE " . $column . " LIKE :" . $column;
+
+        $res = $db->query($sql,[':'. $column => '%'.$value.'%']);
+        if (empty($res)) {
+            $e_message = 'Пустой результат выборки по запросу';
+            $e_code = 2;
+            throw new E404Exception($e_message, $e_code);
+        }
+        return $res;
     }
 
-    public function insert()
+    protected function insert()
     {
         $cols = array_keys($this->data);
         $prms = [];
@@ -66,17 +83,11 @@ abstract class AbstractModel
         // п.э. создан локал. массив $data
 
         $db = new ODB();
-        $this->data['id'] = $db->execute($sql, $prms);
+        $db->execute($sql, $prms);
+        $this->id = $db->lastInsertId();
     }
 
-    public function delete($field, $value)
-    {
-        $sql = "DELETE FROM " . static::$table . " WHERE " . $field . "=:" . $field;
-        $db = new ODB();
-        $db->execute($sql, [':' . $field => $value]);
-    }
-
-    public function update($column, $value)
+    protected function update()
     {
         /*  UDPDATE table
             SET col1=val1, col2=val2, colN=valN
@@ -91,25 +102,41 @@ abstract class AbstractModel
             [':title' => 'MyNewTitle', ':author' => 'NewAuthor', ':id' => 123]
          */
 
-        $cols = array_keys($this->data);
-        $prms = [];
-        foreach ($cols as $val) {
-            $prms[':' . $val] = $this->data[$val];
-        }
-        $prms[':' . $column] = $value;
-
         $setstr = [];
-        foreach ($cols as $val) {
-            $setstr[] = $val . ' = :' .$val;
+        $prms = [];
+        foreach ($this->data as $k => $v) {
+            $prms[':' . $k] = $v;
+            if ('id' == $k) {
+                continue;
+            }
+            $setstr[] = $k . ' = :' .$k;
         }
 
         $sql =
             'UPDATE ' . static::$table .
             ' SET ' . implode(', ', $setstr).
-            ' WHERE ' . $column . '=:' . $column;
+            ' WHERE id=:id';
 
         $db = new ODB();
         $db->execute($sql, $prms);
     }
+
+    public function save()
+    {
+        if (!isset($this->id)) {
+            $this->insert();
+        } else {
+            $this->update();
+        }
+    }
+
+    public function delete()
+    {
+        $sql = "DELETE FROM " . static::$table . " WHERE id=:id";
+        $db = new ODB();
+        $db->execute($sql, [':id' => $this->id]);
+    }
+
+
 
 }
